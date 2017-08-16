@@ -3,7 +3,7 @@
  * Sticky.js
  * Library for sticky elements written in vanilla javascript. With this library you can easily set sticky elements on your website. It's also responsive.
  *
- * @version 1.2.0
+ * @version 1.2.1
  * @author Rafal Galus <biuro@rafalgalus.pl>
  * @website https://rgalus.github.io/sticky-js/
  * @repo https://github.com/rgalus/sticky-js
@@ -21,7 +21,7 @@ class Sticky {
     this.selector = selector;
     this.elements = [];
 
-    this.version = '1.2.0';
+    this.version = '1.2.1';
 
     this.vp = this.getViewportSize();
     this.body = document.querySelector('body');
@@ -267,25 +267,12 @@ class Sticky {
         left: element.sticky.rect.left + 'px',
       });
 
-      if (
-        (this.scrollTop + element.sticky.rect.height + element.sticky.marginTop)
-        > (element.sticky.container.rect.top + element.sticky.container.offsetHeight)
-      ) {
 
-        if (element.sticky.stickyClass) {
-          element.classList.remove(element.sticky.stickyClass);
-        }
-
-        this.css(element, {
-          top: (element.sticky.container.rect.top + element.sticky.container.offsetHeight) - (this.scrollTop + element.sticky.rect.height) + 'px' }
-        );
-      } else {
-        if (element.sticky.stickyClass) {
-          element.classList.add(element.sticky.stickyClass);
-        }
-
-        this.css(element, { top: element.sticky.marginTop + 'px' });
+      if (element.sticky.stickyClass) {
+        element.classList.add(element.sticky.stickyClass);
       }
+
+      this.css(element, { top: element.sticky.marginTop + 'px' });
     } else {
       if (element.sticky.stickyClass) {
         element.classList.remove(element.sticky.stickyClass);
